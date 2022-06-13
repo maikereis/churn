@@ -1,4 +1,4 @@
-"""Module to import, perform EDA and build features"""
+"""Module to import, perform EDA and build features."""
 # pylint: disable=W0621
 
 import os
@@ -80,7 +80,7 @@ KEEP_COLUMNS = [
 
 def import_data(file_path: Path):
     """
-    returns dataframe for the csv found at pth
+    Return a dataframe for the csv found at pth.
 
     input:
             file_path: a path to the csv
@@ -96,14 +96,14 @@ def import_data(file_path: Path):
 
 def perform_eda(dataset):
     """
-    perform eda on df and save figures to images folder
+    Perform eda on df and save figures to images folder.
+
     input:
             dataset: pandas dataframe
 
     output:
             None
     """
-
     if not isinstance(dataset, pd.DataFrame):
         raise TypeError("The dataset passed as an argument is not a pandas' DataFrame")
 
@@ -147,8 +147,8 @@ def perform_eda(dataset):
 
 def encoder_helper(dataset, category_lst, target):
     """
-    helper function to turn each categorical column into a new column with
-    propotion of churn for each category - associated with cell 15 from the notebook
+    Create new columns using the with the mean churn \
+    for each category in the category list.
 
     input:
             dataset: pandas dataframe
@@ -158,7 +158,6 @@ def encoder_helper(dataset, category_lst, target):
     output:
             dataset: pandas dataframe with new columns
     """
-
     encoder = TargetEncoder()
 
     # Create a column with the mean churn in each category in the list.
@@ -173,6 +172,8 @@ def encoder_helper(dataset, category_lst, target):
 
 def perform_feature_engineering(dataset, target):
     """
+    Perfom the feature engineering.
+
     input:
               dataset: pandas dataframe
               target: string of response name.
@@ -182,7 +183,6 @@ def perform_feature_engineering(dataset, target):
               y_train: y training data
               y_test: y testing data
     """
-
     # Create the encoded features
     features = encoder_helper(dataset, CAT_COLUMNS, target)
 
@@ -202,8 +202,9 @@ def classification_report_image(
     y_test,
 ):
     """
-    produces classification report for training and testing results and stores report as image
-    in images folder
+    Produce classification reports for training and testing results\
+    and stores report as image in images folder.
+
     input:
             y_train: training response values
             y_test:  test response values
@@ -215,7 +216,6 @@ def classification_report_image(
     output:
              None
     """
-
     y_test_preds_rf = rf_clf.predict(x_test)
     y_test_proba_preds_rf = rf_clf.predict_proba(x_test)[:, 1]
     y_train_preds_rf = rf_clf.predict(x_train)
@@ -254,7 +254,8 @@ def classification_report_image(
 
 def feature_importance_plot(model, train_features, output_pth):
     """
-    creates and stores the feature importances in pth
+    Create and stores the feature importances in pth.
+
     input:
             model: model object containing feature_importances_
             train_features: pandas dataframe of X values
@@ -263,7 +264,6 @@ def feature_importance_plot(model, train_features, output_pth):
     output:
              None
     """
-
     # Calculate feature importances
     try:
         importances = pd.Series(
@@ -283,7 +283,8 @@ def feature_importance_plot(model, train_features, output_pth):
 
 def train_models(x_train, x_test, y_train, y_test):
     """
-    train, store model results: images + scores, and store models
+    Train and store model results: images + scores, and store models.
+
     input:
               x_train: X training data
               x_test: X testing data
@@ -336,7 +337,8 @@ def train_models(x_train, x_test, y_train, y_test):
 
 def create_churn_flag(dataset):
     """
-    Creates a Churn columns based on the Attrition_Flag
+    Create a Churn columns based on the Attrition_Flag.
+
     input:
               dataset: the churn dataset
     output:

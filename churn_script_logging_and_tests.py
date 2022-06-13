@@ -1,4 +1,4 @@
-"""Tests for the churn_library.py"""
+"""Tests for the churn_library.py."""
 import logging
 import warnings
 
@@ -17,16 +17,12 @@ logger = logging.getLogger()
 
 @pytest.fixture()
 def path():
-    """
-    return the data path
-    """
+    """Return the data path."""
     return DATA_PATH
 
 
 def test_import(path):
-    """
-    test data import - this example is completed for you to assist with the other test functions
-    """
+    """Test data import - this example is completed for you to assist with the other test functions."""
     try:
         churn_data = import_data(path)
         logger.info("Testing import_data: SUCCESS")
@@ -47,9 +43,7 @@ def test_import(path):
 
 
 def test_create_churn_flag():
-    """
-    test the create_churn_flag() function
-    """
+    """Test the function that creates the churn flag."""
     try:
         pytest.churn_data = create_churn_flag(pytest.churn_data)
         logger.info("Testing create_churn_flag: SUCCESS")
@@ -59,10 +53,7 @@ def test_create_churn_flag():
 
 
 def test_eda():
-    """
-    test the test_eda() function
-    """
-
+    """Test the function that perfoms the EDA."""
     try:
         perform_eda(pytest.churn_data)
         logger.info("Testing perform_eda: SUCCESS")
@@ -72,10 +63,7 @@ def test_eda():
 
 
 def test_encoder_helper():
-    """
-    test the test_encoder_helper() function
-    """
-
+    """Test the function that encodes categories."""
     try:
         encoded_df = encoder_helper(
             pytest.churn_data, CAT_COLUMNS, target="Churn")
@@ -93,9 +81,7 @@ def test_encoder_helper():
 
 
 def test_perform_feature_engineering():
-    """
-    test the test_perform_feature_engineering() function
-    """
+    """Test the function that perform the features engineering."""
     try:
         (
             pytest.X_train,
@@ -110,10 +96,7 @@ def test_perform_feature_engineering():
 
 
 def test_train_models():
-    """
-    test the test_train_models() function
-    """
-
+    """Test the function that train models."""
     try:
         train_models(
             pytest.X_train,
