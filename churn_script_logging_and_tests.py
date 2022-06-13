@@ -22,7 +22,8 @@ def path():
 
 
 def test_import(path):
-    """Test data import - this example is completed for you to assist with the other test functions."""
+    """Test data import - this example is completed for you to assist\
+    with the other test functions."""
     try:
         churn_data = import_data(path)
         logger.info("Testing import_data: SUCCESS")
@@ -37,7 +38,8 @@ def test_import(path):
         pytest.churn_data = churn_data
     except AssertionError as err:
         logger.error(
-            "Testing import_data: The file doesn't appear to have rows and columns"
+            "Testing import_data: The file doesn't appear to have rows\
+             and columns"
         )
         raise err
 

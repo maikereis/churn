@@ -105,7 +105,8 @@ def perform_eda(dataset):
             None
     """
     if not isinstance(dataset, pd.DataFrame):
-        raise TypeError("The dataset passed as an argument is not a pandas' DataFrame")
+        raise TypeError(
+            "The dataset passed as an argument is not a pandas' DataFrame")
 
     # Plotting some info about the dataset
     print(f"A taste of the data:\n{dataset.head()}")
@@ -267,8 +268,8 @@ def feature_importance_plot(model, train_features, output_pth):
     # Calculate feature importances
     try:
         importances = pd.Series(
-            model.best_estimator_.feature_importances_, index=train_features.columns
-        )
+            model.best_estimator_.feature_importances_,
+            index=train_features.columns)
     except ValueError as err:
         raise err
 
@@ -332,7 +333,11 @@ def train_models(x_train, x_test, y_train, y_test):
         y_test,
     )
 
-    feature_importance_plot(cv_rfc, x_train, RESULTS_PATH / "feature_importance.png")
+    feature_importance_plot(
+        cv_rfc,
+        x_train,
+        RESULTS_PATH /
+        "feature_importance.png")
 
 
 def create_churn_flag(dataset):
